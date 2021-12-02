@@ -11,6 +11,8 @@ public interface ProductoDao {
 
    void registrar(Producto producto);
 
+    void editar(Producto producto);
+
     public Producto obtenerProductoPorID(Integer id);
 
 

@@ -31,7 +31,7 @@ public class ProductoController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "api/registroProducto", method = RequestMethod.POST)
-    public void registrarUsuario(@RequestBody Producto producto) {
+    public void registrarProducto(@RequestBody Producto producto) {
 
         productoDao.registrar(producto);
     }
@@ -45,6 +45,12 @@ public class ProductoController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "api/editarProducto", method = RequestMethod.POST)
+    public void editarProducto(@RequestBody Producto producto) {
+
+        productoDao.editar(producto);
+    }
 
 
 }

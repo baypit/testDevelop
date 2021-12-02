@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -28,6 +29,21 @@ public class ProductoDaoImp implements ProductoDao {
     @Override
     public void registrar(Producto producto) {
         entityManager.merge(producto);
+    }
+
+    @Override
+    public void editar(Producto producto) {
+
+        Query query2 = entityManager.createQuery("UPDATE Producto p SET p.nombre = :nombre, p.valor =:valor, p.cantidad = :cantidad " +
+        "  WHERE ID = :id")
+                .setParameter("nombre", producto.getNombre())
+                .setParameter("valor", producto.getValor())
+                .setParameter("cantidad", producto.getCantidad())
+                .setParameter("id", producto.getId());
+
+        int rowsUpdated = query2.executeUpdate();
+        System.out.println("entities Updated: " + rowsUpdated);
+
     }
 
     @Override
